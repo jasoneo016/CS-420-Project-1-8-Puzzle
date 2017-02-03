@@ -1,9 +1,10 @@
 import java.util.Arrays;
 
-public class Board implements Comparable<Board>{
+public class Board implements Comparable<Board> {
 
 	private int[] puzzleBoard;
-	private final static int[] goalState = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+	private final static int[] goalState = new int[] { 0, 1, 2, 3, 4, 5, 6, 7,
+			8 };
 
 	private int g;
 	private int h;
@@ -28,7 +29,8 @@ public class Board implements Comparable<Board>{
 	}
 
 	public Board(Board parent, int moveIndex, int heuristicType) {
-		this.puzzleBoard = Arrays.copyOf(parent.puzzleBoard, parent.puzzleBoard.length);
+		this.puzzleBoard = Arrays.copyOf(parent.puzzleBoard,
+				parent.puzzleBoard.length);
 		this.hashBoard = Arrays.hashCode(puzzleBoard);
 		this.heuristicType = heuristicType;
 		puzzleBoard[parent.zeroIndex] = puzzleBoard[moveIndex];
@@ -165,7 +167,7 @@ public class Board implements Comparable<Board>{
 		}
 		return 0;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return hashBoard;

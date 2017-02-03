@@ -1,12 +1,19 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Project1 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		List<Integer> list;
 		Scanner kb = new Scanner(System.in);
-
+		test200Cases();
 		System.out.println("Welcome to 8-Puzzle!\n ");
 		System.out.println("Would you like to: ");
 		System.out.println("1. Randomly Generate an 8-Puzzle Problem");
@@ -82,9 +89,59 @@ public class Project1 {
 		if (!puzzle.isSolvable()) {
 			System.out
 					.println("This is not a valid 8-Puzzle and cannot be solved.");
-		} else {			
+		} else {
 			AStarSearch.search(puzzle);
 		}
+
+		// test100Cases();
+	}
+
+	public static void test200Cases() throws IOException {
+		int depth = 8;
+		String fileName = "Depth"+ depth + ".txt";
+		int[] temp = new int[9];
+		int numCases = 200;
+		int totalNodes = 0;
+		int totalSteps = 0;
+		
+		BufferedReader br = new BufferedReader(new FileReader(
+				"/Users/admin/Desktop/eclipseworkspace/CS 420 Project 1 8Puzzle/src/"
+						+ fileName));
+		String line;
+		
+		long start = System.currentTimeMillis();
+		
+		while ((line = br.readLine()) != null) {
+			if (line.contains("Depth " + depth)) {
+				System.out.println("This is depth " + depth);
+				continue;
+			}
+			
+			for (int i = 0; i < line.length(); i++) {
+				temp[i] = Character.getNumericValue(line.charAt(i));
+			}
+			
+			Board tempBoard = new Board(temp, 2);
+						
+			AStarSearch.search(tempBoard);
+			totalNodes += AStarSearch.getNumNodes();
+			totalSteps += AStarSearch.getSteps();
+		}
+		
+		long end = System.currentTimeMillis() - start;
+		
+		System.out.println("Total time = " + end + " ms.");
+		
+		System.out.println("Total Nodes expanded : " + totalNodes);
+		System.out.println("Total Steps taken : " + totalSteps);
+		System.out.println("Average nodes expanded : " + totalNodes/numCases);
+		System.out.println("Average steps taken : " + totalSteps/numCases);
+
+		br.close();
+		
+//		System.out.println("Average nodes produced for Misplaced at depth " + depth + ": " + (totalMisplacedNodes / lineCount));
+//        System.out.println("Average steps for Misplaced at depth " + depth + ": " + (totalMisplacedSteps / lineCount));
+//        System.out.println("Average time(ms) for Misplaced at depth " + depth + ": " + (totalMisplacedMilli / lineCount));
 	}
 
 }
