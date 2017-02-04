@@ -14,7 +14,7 @@ public class Project1 {
 		AStarSearch aStar = new AStarSearch();
 		List<Integer> list;
 		Scanner kb = new Scanner(System.in);
-		test200Cases();
+//		test200Cases();
 		System.out.println("Welcome to 8-Puzzle!\n ");
 		System.out.println("Would you like to: ");
 		System.out.println("1. Randomly Generate an 8-Puzzle Problem");

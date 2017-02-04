@@ -22,7 +22,7 @@ public class AStarSearch {
 			if (b.isGoalState()) {
 				long end = System.currentTimeMillis() - start;
 				b.printStates();
-//				System.out.println("Total time = " + end + " ms.");
+				System.out.println("Total time = " + end + " ms");
 				break;
 			}
 			
