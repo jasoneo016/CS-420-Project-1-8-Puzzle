@@ -128,7 +128,6 @@ public class Project1 {
 		long end = System.currentTimeMillis() - start;
 		System.out.println("\nDepth " + depth + " with Manhattan Distance");
 		System.out.println("Total time = " + end + " ms.");
-//		System.out.println("Average time = " + end/numCases + " ms.");
 		System.out.println("Total Nodes expanded : " + totalNodes);
 		System.out.println("Average Nodes expanded : " + totalNodes / numCases);
 		System.out.println("Total Steps taken : " + totalSteps);
