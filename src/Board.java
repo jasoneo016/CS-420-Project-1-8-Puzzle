@@ -10,14 +10,12 @@ public class Board implements Comparable<Board> {
 	private int h;
 	private int heuristicType;
 	private int zeroIndex;
-	private int hashBoard;
 
-	private Board parent;
+	private final Board parent;
 
 	public Board(int[] board, int heuristicType) {
 		g = 0;
 		this.puzzleBoard = board;
-		this.hashBoard = Arrays.hashCode(puzzleBoard);
 		this.heuristicType = heuristicType;
 		if (heuristicType == 1) {
 			h = hammingDistance();
@@ -31,7 +29,6 @@ public class Board implements Comparable<Board> {
 	public Board(Board parent, int moveIndex, int heuristicType) {
 		this.puzzleBoard = Arrays.copyOf(parent.puzzleBoard,
 				parent.puzzleBoard.length);
-		this.hashBoard = Arrays.hashCode(puzzleBoard);
 		this.heuristicType = heuristicType;
 		puzzleBoard[parent.zeroIndex] = puzzleBoard[moveIndex];
 		puzzleBoard[moveIndex] = 0;
@@ -170,6 +167,15 @@ public class Board implements Comparable<Board> {
 
 	@Override
 	public int hashCode() {
-		return hashBoard;
+		return Arrays.hashCode(puzzleBoard);
 	}
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Board) {
+            Board other = (Board)obj;
+            return Arrays.equals(puzzleBoard, other.puzzleBoard);
+        }
+        return false;
+    }
 }

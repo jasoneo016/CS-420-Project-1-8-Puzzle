@@ -18,13 +18,16 @@ public class AStarSearch {
 		while (!frontier.isEmpty()) {
 			steps++;
 			Board b = frontier.poll();
+			
 			if (b.isGoalState()) {
 				long end = System.currentTimeMillis() - start;
 				b.printStates();
 				// System.out.println("Total time = " + end + " ms.");
 				break;
 			}
-
+			
+			explored.add(b);
+			
 			Board temp = b.up();
 			if (temp != null) {
 				numNodes++;
@@ -57,7 +60,7 @@ public class AStarSearch {
 				}
 			}
 
-			explored.add(temp);
+			explored.add(b);
 		}
 
 	}
