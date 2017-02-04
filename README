@@ -46,3 +46,5 @@ line 98 of Project1.java:
     		int depth = 2;
             
 Change the value to either 2, 4, 6, 8, 10, 12, 14, 16, 18, or 20.
+
+Edit BufferedReader according to the path of which you saved the Depth#.txt files.
