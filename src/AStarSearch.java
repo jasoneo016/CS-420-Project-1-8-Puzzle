@@ -2,17 +2,17 @@ import java.util.*;
 
 public class AStarSearch {
 
-	private static int numNodes;
-	private static int steps;
-	private static PriorityQueue<Board> frontier = new PriorityQueue<Board>(100);
-	private static HashSet<Board> explored = new HashSet<Board>();
+	private int numNodes;
+	private int steps;
 
-	public static void search(Board board) {
+	public void search(Board board) {
+		PriorityQueue<Board> frontier = new PriorityQueue<Board>();
+		HashSet<Board> explored = new HashSet<Board>();
 
 		long start = System.currentTimeMillis();
 		numNodes = 0;
 		steps = 0;
-		
+
 		frontier.add(board);
 
 		while (!frontier.isEmpty()) {
@@ -21,7 +21,7 @@ public class AStarSearch {
 			if (b.isGoalState()) {
 				long end = System.currentTimeMillis() - start;
 				b.printStates();
-//				System.out.println("Total time = " + end + " ms.");
+				// System.out.println("Total time = " + end + " ms.");
 				break;
 			}
 
@@ -51,24 +51,22 @@ public class AStarSearch {
 
 			temp = b.right();
 			if (temp != null) {
-
 				numNodes++;
 				if (!explored.contains(temp)) {
 					frontier.add(temp);
 				}
 			}
 
-			explored.add(b);
 			explored.add(temp);
 		}
 
 	}
-	
-	public static int getNumNodes() {
+
+	public int getNumNodes() {
 		return numNodes;
 	}
-	
-	public static int getSteps() {
+
+	public int getSteps() {
 		return steps;
 	}
 

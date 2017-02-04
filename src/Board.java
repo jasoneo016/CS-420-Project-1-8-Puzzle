@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Board implements Comparable<Board> {
 
 	private int[] puzzleBoard;
-	private final static int[] goalState = new int[] { 0, 1, 2, 3, 4, 5, 6, 7,
+	private final int[] goalState = new int[] { 0, 1, 2, 3, 4, 5, 6, 7,
 			8 };
 
 	private int g;

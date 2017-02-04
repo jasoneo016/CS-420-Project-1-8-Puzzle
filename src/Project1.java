@@ -11,6 +11,7 @@ public class Project1 {
 
 	public static void main(String[] args) throws IOException {
 
+		AStarSearch aStar = new AStarSearch();
 		List<Integer> list;
 		Scanner kb = new Scanner(System.in);
 		test200Cases();
@@ -90,14 +91,13 @@ public class Project1 {
 			System.out
 					.println("This is not a valid 8-Puzzle and cannot be solved.");
 		} else {
-			AStarSearch.search(puzzle);
+			aStar.search(puzzle);
 		}
-
-		// test100Cases();
 	}
 
 	public static void test200Cases() throws IOException {
-		int depth = 8;
+		AStarSearch aStar = new AStarSearch();
+		int depth = 20;
 		String fileName = "Depth"+ depth + ".txt";
 		int[] temp = new int[9];
 		int numCases = 200;
@@ -123,9 +123,9 @@ public class Project1 {
 			
 			Board tempBoard = new Board(temp, 2);
 						
-			AStarSearch.search(tempBoard);
-			totalNodes += AStarSearch.getNumNodes();
-			totalSteps += AStarSearch.getSteps();
+			aStar.search(tempBoard);
+			totalNodes += aStar.getNumNodes();
+			totalSteps += aStar.getSteps();
 		}
 		
 		long end = System.currentTimeMillis() - start;
