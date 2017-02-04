@@ -22,7 +22,7 @@ public class AStarSearch {
 			if (b.isGoalState()) {
 				long end = System.currentTimeMillis() - start;
 				b.printStates();
-				// System.out.println("Total time = " + end + " ms.");
+//				System.out.println("Total time = " + end + " ms.");
 				break;
 			}
 			
@@ -59,10 +59,7 @@ public class AStarSearch {
 					frontier.add(temp);
 				}
 			}
-
-			explored.add(b);
 		}
-
 	}
 
 	public int getNumNodes() {
@@ -72,5 +69,4 @@ public class AStarSearch {
 	public int getSteps() {
 		return steps;
 	}
-
 }

@@ -173,8 +173,8 @@ public class Board implements Comparable<Board> {
 	@Override
     public boolean equals(Object obj) {
         if (obj instanceof Board) {
-            Board other = (Board)obj;
-            return Arrays.equals(puzzleBoard, other.puzzleBoard);
+            Board b = (Board)obj;
+            return Arrays.equals(puzzleBoard, b.puzzleBoard);
         }
         return false;
     }

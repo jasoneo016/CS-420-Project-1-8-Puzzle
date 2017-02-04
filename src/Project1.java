@@ -25,9 +25,7 @@ public class Project1 {
 		int[] board = new int[9];
 
 		do {
-
 			switch (choice) {
-
 			case "1":
 				board = new int[9];
 				list = new ArrayList<Integer>(9);
@@ -98,51 +96,45 @@ public class Project1 {
 	public static void test200Cases() throws IOException {
 		AStarSearch aStar = new AStarSearch();
 		int depth = 20;
-		String fileName = "Depth"+ depth + ".txt";
+		String fileName = "Depth" + depth + ".txt";
 		int[] temp = new int[9];
 		int numCases = 200;
 		int totalNodes = 0;
 		int totalSteps = 0;
-		
+
 		BufferedReader br = new BufferedReader(new FileReader(
 				"/Users/admin/Desktop/eclipseworkspace/CS 420 Project 1 8Puzzle/src/"
 						+ fileName));
 		String line;
-		
+
 		long start = System.currentTimeMillis();
-		
+
 		while ((line = br.readLine()) != null) {
 			if (line.contains("Depth " + depth)) {
 				System.out.println("This is depth " + depth);
 				continue;
 			}
-			
+
 			for (int i = 0; i < line.length(); i++) {
 				temp[i] = Character.getNumericValue(line.charAt(i));
 			}
-			
+
 			Board tempBoard = new Board(temp, 2);
-						
 			aStar.search(tempBoard);
 			totalNodes += aStar.getNumNodes();
 			totalSteps += aStar.getSteps();
 		}
-		
+
 		long end = System.currentTimeMillis() - start;
-	
-		
+		System.out.println("\nDepth " + depth + " with Manhattan Distance");
 		System.out.println("Total time = " + end + " ms.");
-		
+//		System.out.println("Average time = " + end/numCases + " ms.");
 		System.out.println("Total Nodes expanded : " + totalNodes);
+		System.out.println("Average Nodes expanded : " + totalNodes / numCases);
 		System.out.println("Total Steps taken : " + totalSteps);
-		System.out.println("Average nodes expanded : " + totalNodes/numCases);
-		System.out.println("Average steps taken : " + totalSteps/numCases);
+		System.out.println("Average Steps taken : " + totalSteps / numCases);
 
 		br.close();
-		
-//		System.out.println("Average nodes produced for Misplaced at depth " + depth + ": " + (totalMisplacedNodes / lineCount));
-//        System.out.println("Average steps for Misplaced at depth " + depth + ": " + (totalMisplacedSteps / lineCount));
-//        System.out.println("Average time(ms) for Misplaced at depth " + depth + ": " + (totalMisplacedMilli / lineCount));
 	}
 
 }
