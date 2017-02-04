@@ -22,7 +22,7 @@ public class Project1 {
 
 		boolean flag = true;
 		String choice = kb.nextLine();
-		int[] board = new int[9]; 
+		int[] board = new int[9];  
 
 		do {
 			switch (choice) {
